@@ -139,8 +139,8 @@ emissions, stride = generate_emissions(
     alignment_model, audio_waveform, batch_size=args.batch_size
 )
 
-del alignment_model
-torch.cuda.empty_cache()
+# del alignment_model
+# torch.cuda.empty_cache()
 
 full_transcript = "".join(segment["text"] for segment in whisper_results)
 
@@ -177,8 +177,8 @@ torchaudio.save(
 msdd_model = NeuralDiarizer(cfg=create_config(temp_path)).to(args.device)
 msdd_model.diarize()
 
-del msdd_model
-torch.cuda.empty_cache()
+# del msdd_model
+# torch.cuda.empty_cache()
 
 # Reading timestamps <> Speaker Labels mapping
 

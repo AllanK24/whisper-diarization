@@ -44,8 +44,8 @@ def transcribe(
     for segment in segments:
         whisper_results.append(segment._asdict())
     # clear gpu vram
-    del whisper_model
-    torch.cuda.empty_cache()
+    # del whisper_model
+    # torch.cuda.empty_cache()
     return whisper_results, info.language
 
 
@@ -69,6 +69,6 @@ def transcribe_batched(
     )
     audio = whisperx.load_audio(audio_file)
     result = whisper_model.transcribe(audio, language=language, batch_size=batch_size)
-    del whisper_model
-    torch.cuda.empty_cache()
+    # del whisper_model
+    # torch.cuda.empty_cache()
     return result["segments"], result["language"], audio
