@@ -1,5 +1,5 @@
 import torch
-
+import whisperx
 
 def transcribe(
     audio_file: str,
@@ -49,6 +49,7 @@ def transcribe(
     return whisper_results, info.language
 
 
+
 def transcribe_batched(
     audio_file: str,
     language: str,
@@ -69,6 +70,17 @@ def transcribe_batched(
     )
     audio = whisperx.load_audio(audio_file)
     result = whisper_model.transcribe(audio, language=language, batch_size=batch_size)
-    del whisper_model
-    torch.cuda.empty_cache()
+    # del whisper_model
+    # torch.cuda.empty_cache()
+    return result["segments"], result["language"], audio
+
+
+def transcribe_batched_performance(
+    whisper_model,
+    audio_file: str,
+    language: str,
+    batch_size: int,
+):
+    audio = whisperx.load_audio(audio_file)
+    result = whisper_model.transcribe(audio, language=language, batch_size=batch_size)
     return result["segments"], result["language"], audio

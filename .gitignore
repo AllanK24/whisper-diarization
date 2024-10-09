@@ -4,4 +4,7 @@ __pycache__/
 *.wav
 *.mp3
 *.m4a
-
+.venv
+speech_diarization.py
+format_output.py
+output/
